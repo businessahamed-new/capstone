@@ -143,3 +143,4 @@ Reduced manual intervention, resulting in improved deployment efficiency and ope
 Conclusion
 
 This architecture establishes a modern DevOps workflow by integrating GitHub, Jenkins, Docker, Terraform, Ansible, Amazon ECR, Amazon EKS, Kubernetes, Prometheus, and Grafana. The automated pipeline enables rapid, reliable, and scalable deployments of the ShopNow application while ensuring continuous monitoring and simplified application management in the AWS cloud.
+CI/CD webhook test
