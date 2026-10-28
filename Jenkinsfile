@@ -52,3 +52,13 @@ pipeline {
             }
         }
     }
+post {
+        success {
+            echo 'ShopNow CI/CD pipeline completed successfully.'
+        }
+
+        failure {
+            echo 'ShopNow CI/CD pipeline failed. Check the Jenkins console output.'
+        }
+    }
+}
