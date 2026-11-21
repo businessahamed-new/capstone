@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopnow-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: shopnow-backend
+  template:
+    metadata:
+      labels:
+        app: shopnow-backend
+    spec:
+      containers:
+        - name: shopnow-backend
+          image: 766851565676.dkr.ecr.us-east-1.amazonaws.com/shopnow-backend:latest
+          ports:
+            - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shopnow-backend-service
+spec:
+  selector:
+    app: shopnow-backend
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+  type: ClusterIP
