@@ -1,0 +1,16 @@
+---
+- name: Configure EKS worker nodes
+  hosts: eks_nodes
+  become: yes
+  tasks:
+    - name: Verify containerd is running
+      ansible.builtin.service:
+        name: containerd
+        state: started
+        enabled: yes
+
+    - name: Verify kubelet is running
+      ansible.builtin.service:
+        name: kubelet
+        state: started
+        enabled: yes

@@ -1,0 +1,15 @@
+---
+- name: Install common dependencies
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update package cache
+      ansible.builtin.package:
+        update_cache: yes
+
+    - name: Install common packages
+      ansible.builtin.package:
+        name:
+          - git
+          - curl
+        state: present
