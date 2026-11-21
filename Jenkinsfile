@@ -82,6 +82,9 @@ pipeline {
             steps {
                 sh '''
                     kubectl apply -f k8s/namespace.yml
+                    kubectl apply -f k8s/mongodb.yml
+                    kubectl rollout status deployment/shopnow-mongodb -n web-app --timeout=5m
+
 
                     export FRONTEND_IMAGE=${ECR_REGISTRY}/shopnow-frontend:${BUILD_TAG}
                     export BACKEND_IMAGE=${ECR_REGISTRY}/shopnow-backend:${BUILD_TAG}

@@ -58,15 +58,18 @@ spec:
           image: ${BACKEND_IMAGE}
           ports:
             - containerPort: 5000
+          env:
+            - name: MONGODB_URI
+              value: "mongodb://shopnow-mongodb:27017/shopnow"
           readinessProbe:
             httpGet:
-              path: /health
+              path: /api/health
               port: 5000
             initialDelaySeconds: 5
             periodSeconds: 10
           livenessProbe:
             httpGet:
-              path: /health
+              path: /api/health
               port: 5000
             initialDelaySeconds: 15
             periodSeconds: 20

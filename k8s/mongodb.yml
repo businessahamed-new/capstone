@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopnow-mongodb
+  namespace: web-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shopnow-mongodb
+  template:
+    metadata:
+      labels:
+        app: shopnow-mongodb
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo:7
+          ports:
+            - containerPort: 27017
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shopnow-mongodb
+  namespace: web-app
+spec:
+  type: ClusterIP
+  selector:
+    app: shopnow-mongodb
+  ports:
+    - port: 27017
+      targetPort: 27017
